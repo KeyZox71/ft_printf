@@ -6,7 +6,7 @@
 #    By: adjoly <adjoly@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 12:35:27 by adjoly            #+#    #+#              #
-#    Updated: 2023/11/17 14:38:41 by adjoly           ###   ########.fr        #
+#    Updated: 2023/11/17 19:59:14 by adjoly           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,14 @@ NAME = libftprintf.a
 
 CC = cc
 
-SRCS = \
+SRCS = ft_printf.c\
+		
 
 OBJS = $(SRCS:.c=.o)
 
 FLAGS = -Werror -Wall -Wextra
 
-HEADER = libftprintf.h
+HEADER = libftprintf.h \
 
 $(NAME): $(OBJS)
 	ar -rcs $(NAME) $(OBJS)
