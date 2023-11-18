@@ -6,7 +6,7 @@
 /*   By: adjoly <adjoly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:48:37 by adjoly            #+#    #+#             */
-/*   Updated: 2023/11/17 20:03:48 by adjoly           ###   ########.fr       */
+/*   Updated: 2023/11/18 10:50:53 by adjoly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_printf(const char *format, ...)
 		{
 			i++;
 			if (format[i] == '%')
-				ft_putchar_fd('%', 1);
+				ft_putchar('%');
 			else if (format[i] == 's')
 				ft_putstr_fd(va_arg(args, char *), 1);
 			else if (format[i] == 'c')
