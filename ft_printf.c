@@ -6,7 +6,7 @@
 /*   By: adjoly <adjoly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:48:37 by adjoly            #+#    #+#             */
-/*   Updated: 2023/11/18 10:50:53 by adjoly           ###   ########.fr       */
+/*   Updated: 2023/11/18 20:56:29 by adjoly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,44 @@
 #include "libftprintf.h"
 #include <stdarg.h>
 
+void	ft_putaddr(void *ptr)
+{
+	
+}
+
+void	ft_putnbrulong(int n)
+{
+	if (n < 10)
+		write(1, &(char){n + '0'}, 1);
+	else
+	{
+		ft_putnbr_fd(n / 10, 1);
+		write(1, &(char){n % 10 + '0'}, 1);
+	}
+}
+
+int	ft_printconversion(char conversion, va_list args)
+{
+	if (conversion == '%')
+		ft_putchar('%');
+	else if (conversion == 's')
+		ft_putstr(va_arg(args, char *));
+	else if (conversion == 'c')
+		ft_putchar(va_arg(args, char *)[0]);
+	else if (conversion == 'i' || conversion == 'd')
+		ft_putnbr(va_arg(args, int));
+	else if (conversion == 'u')
+		ft_putnbrulong(va_arg(args, unsigned long));
+	else if (conversion == 'p')
+		ft_putstr((char *)va_arg(args, void *));
+	else if (conversion == 'x')
+		ft_putnbrbase(va_arg(args, int), "0123456789abcdef");
+	else if (conversion == 'X')
+		ft_putnbrbase(va_arg(args, int), "0123456789ABCDEF");
+}
+
 int	ft_printf(const char *format, ...)
 {
-	char		*result;
 	int			i;
 	int			j;
 	va_list		args;
@@ -27,18 +62,12 @@ int	ft_printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			if (format[i] == '%')
-				ft_putchar('%');
-			else if (format[i] == 's')
-				ft_putstr_fd(va_arg(args, char *), 1);
-			else if (format[i] == 'c')
-				ft_putchar_fd(va_arg(args, char *)[0], 1);
-			else if (format[i] == 'i' || format[i] == 'd')
-				ft_putnbr_fd(va_arg(args, int), 1);
+			ft_printconversion(format[i], args);
 		}
 		else
 			ft_putchar_fd(format[i], i);
 		i++;
 	}
+	va_end(args);
 	return (ft_strlen(result));
 }
