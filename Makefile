@@ -6,7 +6,7 @@
 #    By: adjoly <adjoly@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 12:35:27 by adjoly            #+#    #+#              #
-#    Updated: 2023/11/20 10:07:45 by adjoly           ###   ########.fr        #
+#    Updated: 2023/11/20 15:55:52 by adjoly           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,16 +19,18 @@ SRCS = ft_printf.c \
 		ft_putnbr.c \
 		ft_putnbrbase.c \
 		ft_putstr.c \
+		ft_strlen.c \
 
 OBJS = $(SRCS:.c=.o)
 
 FLAGS = -Werror -Wall -Wextra
 
-HEADER = libftprintf.h \
+HEADER = libftprintf.h 
+
 $(NAME): $(OBJS)
 	ar -rcs $(NAME) $(OBJS)
 
-%.o: %.cc
+%.o: %.c
 	$(CC) $(FLAGS) -I $(HEADER) $< -c -o $@
 
 all: $(NAME)
@@ -37,7 +39,7 @@ clean:
 	rm -f $(OBJS)
 
 fclean: clean
-	rn -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 

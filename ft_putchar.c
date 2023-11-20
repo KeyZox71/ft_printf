@@ -6,11 +6,11 @@
 /*   By: adjoly <adjoly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 10:49:00 by adjoly            #+#    #+#             */
-/*   Updated: 2023/11/20 10:04:41 by adjoly           ###   ########.fr       */
+/*   Updated: 2023/11/20 15:51:04 by adjoly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_putchar(char c)
 {

@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbrbase_fd.c                                 :+:      :+:    :+:   */
+/*   ft_putnbrbase.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjoly <adjoly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 10:57:44 by adjoly            #+#    #+#             */
-/*   Updated: 2023/11/18 11:10:32 by adjoly           ###   ########.fr       */
+/*   Updated: 2023/11/20 16:16:34 by adjoly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_putnbrbase_fd(int n, char *base, int fd)
+int	ft_putnbrbase(int n, char *base)
 {
-	unsigned int	nbr;
-	size_t			base_len;
+	int	base_len;
+	int	len;
 
-	base_len = ft_strlen(base);
-	if (n < 0)
-	{
-		write(fd, "-", 1);
-		nbr = -n;
-	}
-	else
-		nbr = n;
-	if (nbr < base_len)
-		write(fd, &base[nbr % base_len], 1);
+	len = 0;
+	base_len = (int)ft_strlen(base);
+	if (n < base_len)
+		len += write(1, &base[n % base_len], 1);
 	else
 	{
-		ft_putnbrbase_fd(nbr / base_len, base, fd);
-		write(fd, &base[nbr % base_len], 1);
+		len += ft_putnbrbase(n / base_len, base);
+		len += write(1, &base[n % base_len], 1);
 	}
+	return (len);
 }
