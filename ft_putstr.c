@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjoly <adjoly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 16:50:36 by adjoly            #+#    #+#             */
-/*   Updated: 2023/11/20 10:04:12 by adjoly           ###   ########.fr       */
+/*   Created: 2023/10/31 11:45:55 by adjoly            #+#    #+#             */
+/*   Updated: 2023/11/20 10:07:08 by adjoly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "libftprintf.h"
 
-# include <stdlib.h>
-# include <stdarg.h>
-# include <unistd.h>
+int	ft_putstr(char *s)
+{
+	int	i;
 
-int		ft_printf(const char *format, ...);
-int		ft_printconversion(char conversion, va_list args);
-void	ft_putnbrulong(unsigned long n);
-void	ft_putaddr(void *ptr);
-
-int		ft_putstr(char *s);
-void	ft_putnbrbase(int n, char *base);
-int		ft_putchar(char c);
-void	ft_putnbr(int n);
-
-#endif
+	i = 0;
+	if (s == NULL)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
+	while (s[i])
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
+	return (i);
+}

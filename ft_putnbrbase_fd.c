@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_putnbrbase_fd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjoly <adjoly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 16:50:36 by adjoly            #+#    #+#             */
-/*   Updated: 2023/11/20 10:04:12 by adjoly           ###   ########.fr       */
+/*   Created: 2023/11/18 10:57:44 by adjoly            #+#    #+#             */
+/*   Updated: 2023/11/18 11:10:32 by adjoly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <stdarg.h>
-# include <unistd.h>
+void	ft_putnbrbase_fd(int n, char *base, int fd)
+{
+	unsigned int	nbr;
+	size_t			base_len;
 
-int		ft_printf(const char *format, ...);
-int		ft_printconversion(char conversion, va_list args);
-void	ft_putnbrulong(unsigned long n);
-void	ft_putaddr(void *ptr);
-
-int		ft_putstr(char *s);
-void	ft_putnbrbase(int n, char *base);
-int		ft_putchar(char c);
-void	ft_putnbr(int n);
-
-#endif
+	base_len = ft_strlen(base);
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		nbr = -n;
+	}
+	else
+		nbr = n;
+	if (nbr < base_len)
+		write(fd, &base[nbr % base_len], 1);
+	else
+	{
+		ft_putnbrbase_fd(nbr / base_len, base, fd);
+		write(fd, &base[nbr % base_len], 1);
+	}
+}

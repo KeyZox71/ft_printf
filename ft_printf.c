@@ -6,32 +6,33 @@
 /*   By: adjoly <adjoly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:48:37 by adjoly            #+#    #+#             */
-/*   Updated: 2023/11/18 20:56:29 by adjoly           ###   ########.fr       */
+/*   Updated: 2023/11/20 11:53:52 by adjoly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "libftprintf.h"
-#include <stdarg.h>
 
 void	ft_putaddr(void *ptr)
 {
-	
+	ft_putstr((char *)ptr);
 }
 
-void	ft_putnbrulong(int n)
+void	ft_putnbrulong(unsigned long n)
 {
 	if (n < 10)
 		write(1, &(char){n + '0'}, 1);
 	else
 	{
-		ft_putnbr_fd(n / 10, 1);
+		ft_putnbrulong(n / 10);
 		write(1, &(char){n % 10 + '0'}, 1);
 	}
 }
 
 int	ft_printconversion(char conversion, va_list args)
 {
+	int	count;
+
+	count = 0;
 	if (conversion == '%')
 		ft_putchar('%');
 	else if (conversion == 's')
@@ -48,26 +49,29 @@ int	ft_printconversion(char conversion, va_list args)
 		ft_putnbrbase(va_arg(args, int), "0123456789abcdef");
 	else if (conversion == 'X')
 		ft_putnbrbase(va_arg(args, int), "0123456789ABCDEF");
+	return (count);
 }
 
 int	ft_printf(const char *format, ...)
 {
-	int			i;
-	int			j;
-	va_list		args;
+	int		i;
+	int		j;
+	va_list	args;
+	int		count;
 
 	va_start(args, format);
+	count = 0;
 	while (format[i])
 	{
 		if (format[i] == '%')
 		{
 			i++;
-			ft_printconversion(format[i], args);
+			count += ft_printconversion(format[i], args);
 		}
 		else
-			ft_putchar_fd(format[i], i);
+			ft_putchar(format[i]);
 		i++;
 	}
 	va_end(args);
-	return (ft_strlen(result));
+	return (count);
 }
