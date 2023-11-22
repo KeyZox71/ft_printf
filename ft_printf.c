@@ -6,7 +6,7 @@
 /*   By: adjoly <adjoly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:48:37 by adjoly            #+#    #+#             */
-/*   Updated: 2023/11/22 13:01:29 by adjoly           ###   ########.fr       */
+/*   Updated: 2023/11/22 14:01:50 by adjoly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_putaddr(void *ptr)
 	if (ptr == NULL)
 		return (write(1, "(nil)", 5));
 	write(1, "0x", 2);
-	r = ft_putnbrbase((long unsigned int)ptr, "0123456789abcdef");
+	r = ft_putnbrbase_p((long unsigned int)ptr, "0123456789abcdef");
 	return (2 + r);
 }
 
