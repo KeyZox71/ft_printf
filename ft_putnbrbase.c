@@ -6,16 +6,16 @@
 /*   By: adjoly <adjoly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 10:57:44 by adjoly            #+#    #+#             */
-/*   Updated: 2023/11/20 16:16:34 by adjoly           ###   ########.fr       */
+/*   Updated: 2023/11/22 13:21:55 by adjoly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putnbrbase(int n, char *base)
+int	ft_putnbrbase(unsigned long int n, char *base)
 {
-	int	base_len;
-	int	len;
+	unsigned long int	base_len;
+	int					len;
 
 	len = 0;
 	base_len = (int)ft_strlen(base);

@@ -6,7 +6,7 @@
 /*   By: adjoly <adjoly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:50:36 by adjoly            #+#    #+#             */
-/*   Updated: 2023/11/20 15:52:59 by adjoly           ###   ########.fr       */
+/*   Updated: 2023/11/22 11:24:27 by adjoly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 
 int		ft_printf(const char *format, ...);
 int		ft_printconversion(char conversion, va_list args);
-int		ft_putnbrulong(unsigned long n);
+int		ft_putnbrulong(unsigned int n);
 int		ft_putaddr(void *ptr);
 
 int		ft_putstr(char *s);
-int		ft_putnbrbase(int n, char *base);
+int		ft_putnbrbase(unsigned long int n, char *base);
 int		ft_putchar(char c);
 int		ft_putnbr(int n);
 size_t	ft_strlen(const char *s);

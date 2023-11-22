@@ -6,7 +6,7 @@
 /*   By: adjoly <adjoly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:48:37 by adjoly            #+#    #+#             */
-/*   Updated: 2023/11/20 16:09:16 by adjoly           ###   ########.fr       */
+/*   Updated: 2023/11/22 13:01:29 by adjoly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ int	ft_putaddr(void *ptr)
 {
 	int	r;
 
+	if (ptr == NULL)
+		return (write(1, "(nil)", 5));
 	write(1, "0x", 2);
 	r = ft_putnbrbase((long unsigned int)ptr, "0123456789abcdef");
 	return (2 + r);
 }
 
-int	ft_putnbrulong(unsigned long n)
+int	ft_putnbrulong(unsigned int n)
 {
 	int	len;
 
@@ -46,17 +48,17 @@ int	ft_printconversion(char conversion, va_list args)
 	else if (conversion == 's')
 		count = ft_putstr(va_arg(args, char *));
 	else if (conversion == 'c')
-		count = ft_putchar(va_arg(args, char *)[0]);
+		count = ft_putchar(va_arg(args, int));
 	else if (conversion == 'i' || conversion == 'd')
 		count = ft_putnbr(va_arg(args, int));
 	else if (conversion == 'u')
-		count = ft_putnbrulong(va_arg(args, unsigned long));
+		count = ft_putnbrulong(va_arg(args, unsigned int));
 	else if (conversion == 'p')
 		count = ft_putaddr(va_arg(args, void *));
 	else if (conversion == 'x')
-		count = ft_putnbrbase(va_arg(args, unsigned int), "0123456789abcdef");
+		count = ft_putnbrbase(va_arg(args, unsigned long), "0123456789abcdef");
 	else if (conversion == 'X')
-		count = ft_putnbrbase(va_arg(args, unsigned int), "0123456789ABCDEF");
+		count = ft_putnbrbase(va_arg(args, unsigned long), "0123456789ABCDEF");
 	return (count);
 }
 
