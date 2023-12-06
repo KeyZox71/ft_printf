@@ -6,7 +6,7 @@
 /*   By: adjoly <adjoly@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:48:37 by adjoly            #+#    #+#             */
-/*   Updated: 2023/11/26 15:08:59 by adjoly           ###   ########.fr       */
+/*   Updated: 2023/12/06 14:27:05 by adjoly           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ int	ft_printf(const char *format, ...)
 	va_start(args, format);
 	count = 0;
 	i = 0;
+	if (format == NULL)
+		return (-1);
 	while (format[i])
 	{
 		if (format[i] == '%')
